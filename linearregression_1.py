@@ -24,7 +24,7 @@ print(red.fit(home_price[['Area']] , home_price.Price)) # Inside the '[[]] ' is 
 
 # Now our model is ready for the prediction...
 
-print(red.predict(home_price[['Price']]))
+print(red.predict(home_price[['Area']]))
 
 # One more Test...
 
