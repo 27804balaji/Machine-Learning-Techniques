@@ -1,0 +1,94 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOVeTCrexaxTR/xQ4NvObuV",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/27804balaji/Machine-Learning-Techniques/blob/main/LinearRegression%203.1\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "2ODZKivrjpUS",
+        "outputId": "e64fc793-2d8b-482c-ac74-4cf839d476c4"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "The Prediction Price of the Mercedez Benz C class [45000, 4, 1, 0] : [30253.10988495]\n",
+            "The Prediction Price of the BMW X5  [86000, 7, 1, 0] : [11080.74313219]\n",
+            "The Accuracy level of the Model is : 0.9417050937281083\n"
+          ]
+        },
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "/usr/local/lib/python3.10/dist-packages/sklearn/base.py:439: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names\n",
+            "  warnings.warn(\n",
+            "/usr/local/lib/python3.10/dist-packages/sklearn/base.py:439: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names\n",
+            "  warnings.warn(\n"
+          ]
+        }
+      ],
+      "source": [
+        "import pandas as p\n",
+        "from sklearn.linear_model import LinearRegression\n",
+        "\n",
+        "dataset = p.read_csv('/content/carprices.csv')\n",
+        "# print(dataset)\n",
+        "\n",
+        "dummy_variable = p.get_dummies(dataset.CarModel )\n",
+        "# print(dummy_variable)\n",
+        "\n",
+        "merging = p.concat([dataset , dummy_variable] , axis = 'columns')\n",
+        "# print(merging)\n",
+        "\n",
+        "droping = merging.drop(['CarModel' , 'Audi A5'] , axis = 'columns' )\n",
+        "# print(droping)\n",
+        "\n",
+        "model = LinearRegression()\n",
+        "\n",
+        "training_x = droping.drop(['Price'] , axis = 'columns')\n",
+        "training_y = droping.Price\n",
+        "\n",
+        "fitting = model.fit(training_x , training_y)\n",
+        "prediction = model.predict([[45000 , 4 , 1 , 0 ]])\n",
+        "prediction_1 = model.predict([[86000 , 7 , 1 , 0 ]])\n",
+        "print(f'The Prediction Price of the Mercedez Benz C class {[45000 , 4 , 1 , 0 ]} :',prediction)\n",
+        "print(f'The Prediction Price of the BMW X5  {[86000 , 7 , 1 , 0 ]} :',prediction_1)\n",
+        "\n",
+        "score = model.score(training_x , training_y)\n",
+        "print('The Accuracy level of the Model is :',score)\n",
+        "\n",
+        "\n"
+      ]
+    }
+  ]
+}
