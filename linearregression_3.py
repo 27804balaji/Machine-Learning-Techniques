@@ -13,7 +13,7 @@ merge = p.concat([data , dummy ], axis='columns')
 
 #We want to drop the town column from the exact dataset...
 
-drop = merge.drop(['Town' , 'West'] , axis='columns')
+drop = merge.drop(['Town'] , axis='columns')
 # print(drop)
 
 model = LinearRegression()
@@ -26,7 +26,7 @@ training_y = drop.Price
 fitting = model.fit(training_x , training_y)
 # print(fitting)
 
-prediction = model.predict([[7000,1,0]])
+prediction = model.predict([[7000,1,0,0]])
 print('The Prediction price :',prediction)
 
 #To find the accuracy...
