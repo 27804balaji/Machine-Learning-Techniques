@@ -3,7 +3,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn import tree
 import math
 
-data = p.read_csv('/content/titanic.csv')
+data = p.read_csv(r"C:\Users\abc\Downloads\titanic.csv")
 # print(data)
 
 # Creating independent_variable & dependent_variable...
